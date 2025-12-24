@@ -1,0 +1,16 @@
+dotenv
+requests
+pydantic
+
+streamlit
+
+langchain
+langchain_core
+langchain_openai
+
+langchain-text-splitters 
+langchain-community 
+bs4
+
+langchain-qdrant
+pypdf
