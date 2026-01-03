@@ -7,14 +7,15 @@ import langsmith as ls
 trace_client = client
 config = {"configurable": {"thread_id": "1"}}
 
-def call_agent(user_message, userId, userName):
+def call_agent(user_message, userId, userName, modelName):
     with ls.tracing_context(client=trace_client, project_name="AI-Agent", enabled=True):
         response = agent.invoke(
             {"messages": [{"role": "user", "content": user_message}]},
             config=config,
             context=Context(
                 user_id=userId,
-                user_name=userName
+                user_name=userName,
+                model_name=modelName
             )
         )
 

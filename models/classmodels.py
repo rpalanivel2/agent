@@ -12,3 +12,4 @@ class Context(BaseModel):
     """Context for tool execution."""
     user_id: str
     user_name: str 
+    model_name: str

@@ -15,9 +15,11 @@ def ui():
 
     # Defaults stored in session state
     if "user_id" not in st.session_state:
-        st.session_state.user_id = "123"
+        st.session_state.user_id = ""
     if "user_name" not in st.session_state:
         st.session_state.user_name = ""
+    if "model_name" not in st.session_state:
+        st.session_state.model_name = "gpt-4.1-mini"
 
     st.session_state.user_id = st.sidebar.text_input(
         "User ID",
@@ -27,6 +29,11 @@ def ui():
     st.session_state.user_name = st.sidebar.text_input(
         "User Name",
         value=st.session_state.user_name,
+    )
+
+    st.session_state.model_name = st.sidebar.text_input(
+        "Model Name",
+        value=st.session_state.model_name,
     )
 
     st.sidebar.write("---")
@@ -62,7 +69,7 @@ def ui():
         with st.chat_message("user", avatar="🧑"):
             st.write(user_input)
 
-        agent_reply = call_agent(user_input, st.session_state.user_id, st.session_state.user_name)
+        agent_reply = call_agent(user_input, st.session_state.user_id, st.session_state.user_name, st.session_state.model_name)
 
         st.session_state.chat_history.append(("assistant", agent_reply))
         with st.chat_message("assistant"):
